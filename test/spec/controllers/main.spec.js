@@ -1,0 +1,45 @@
+"use strict";
+
+describe("Controller: MainCtrl", function () {
+
+  // load the controller"s module
+  beforeEach(module("scoreTrackerApp"));
+
+  var MainCtrl,
+    scope,
+    ScoreService;
+
+  // Initialize the controller and a mock scope
+  beforeEach(inject(function ($controller, $rootScope, _ScoreService_) {
+    scope = $rootScope.$new();
+    ScoreService = _ScoreService_;
+
+    spyOn(ScoreService, "getList").and.returnValues({
+      "00000000-0000-0000-0000-000000000001": {
+        name: "Megan",
+        value: 99
+      },
+      "00000000-0000-0000-0000-000000000002": {
+        name: "Josh",
+        value: 98
+      }
+    });
+
+    MainCtrl = $controller("MainCtrl", {
+      $scope: scope,
+      ScoreService: ScoreService
+    });
+  }));
+
+  it("put a list of scores on scope", function () {
+    expect(_.size(scope.scores)).toBe(2);
+  });
+
+  it("creates new score", function() {
+    var userProvidedScore = { name: "Greg", value: 100 };
+    spyOn(ScoreService, "create").and.returnValue(userProvidedScore);
+
+    scope.addScore(userProvidedScore);
+    expect(ScoreService.create).toHaveBeenCalledWith(userProvidedScore);
+  });
+});

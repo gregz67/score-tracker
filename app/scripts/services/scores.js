@@ -1,25 +1,27 @@
-'use strict';
+"use strict";
 
-angular.module('scoreTrackerApp')
-  .factory('ScoreService', function(localStorageService, Uuid) {
-    var scoresKey = 'scores';
+angular.module("scoreTrackerApp")
+  .factory("ScoreService", function(localStorageService, Uuid) {
+    var scoresKey = "scores";
     var scores = {};
 
     function getList() {
       return scores;
     }
 
-    function create() {
-      return Uuid.generate();
+    function create(score) {
+      if (score.name && typeof score.name === "string" &&
+        score.value && typeof score.value === "number") {
+
+        var uuid = Uuid.generate();
+        scores[uuid] = score;
+        persist();
+
+        return scores[uuid];
+      } else {
+        return undefined;
+      }
     }
-    //function create(score) {
-    //  if (score.name && typeof score.name === 'string' &&
-    //    score.value && typeof score.value === 'number') {
-    //
-    //    scores[Uuid.generate()] = score;
-    //    persist();
-    //  }
-    //}
 
     function persist() {
       localStorageService.set(scoresKey, scores);
