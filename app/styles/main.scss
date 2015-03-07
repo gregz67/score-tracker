@@ -85,8 +85,14 @@ body {
     border-bottom: 1px solid #E6E6E6;
 
     .data {
-      display: inline-block;
-      width: 40%;
+      .item {
+        display: inline-block;
+        width: 40%;
+      }
+
+      &.fail {
+        color: #FF6666;
+      }
     }
 
     .glyphicon {
