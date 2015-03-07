@@ -15,5 +15,8 @@
            ng-required="true"/>
     <button type="submit" tabindex="3" class="btn btn-primary">Add Score</button>
   </form>
-  <h2>List goes here</h2>
+
+  <ul class="scores">
+    <li class="score"ng-repeat="score in scores"><span>{{score.name}}</span><span>{{score.value}}</span></li>
+  </ul>
 </div>

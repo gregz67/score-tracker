@@ -9,7 +9,13 @@
  */
 angular.module('scoreTrackerApp')
   .controller('MainCtrl', function ($scope, ScoreService) {
+
+    // populate list
     $scope.scores = ScoreService.getList();
+
+    function focusForm() {
+      $("#scoreForm").find("input").first().focus();
+    }
     focusForm();
 
     $scope.addScore = function(score) {
@@ -19,10 +25,9 @@ angular.module('scoreTrackerApp')
         }
         $scope.newScore = { name: "", value: undefined };
         focusForm();
+
+        $scope.scores = ScoreService.getList();
       }
     };
 
-    function focusForm() {
-      $("#scoreForm").find("input").first().focus();
-    }
   });

@@ -3,28 +3,31 @@
 angular.module("scoreTrackerApp")
   .factory("ScoreService", function(localStorageService, Uuid) {
     var scoresKey = "scores";
-    var scores = {};
+    var scores = [];
 
     function getList() {
-      return scores;
+      if (_.isEmpty(scores)) {
+        scores = _.filter(localStorageService.get(scoresKey));
+      }
+      return _.sortBy(scores, "name");
     }
 
     function create(score) {
       if (score.name && typeof score.name === "string" &&
         score.value && typeof score.value === "number") {
 
-        var uuid = Uuid.generate();
-        scores[uuid] = score;
+        score.uuid = Uuid.generate();
+        scores.push(score);
         persist();
 
-        return scores[uuid];
+        return score;
       } else {
         return undefined;
       }
     }
 
     function persist() {
-      localStorageService.set(scoresKey, scores);
+      localStorageService.set(scoresKey, _.indexBy(scores, 'uuid'));
     }
 
     return {

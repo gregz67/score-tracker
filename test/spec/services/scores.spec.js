@@ -7,7 +7,6 @@ describe("ScoreService", function() {
   beforeEach(inject(function (_ScoreService_, _localStorageService_) {
     ScoreService = _ScoreService_;
     localStorageService = _localStorageService_;
-
   }));
 
   describe("create", function() {
@@ -39,6 +38,10 @@ describe("ScoreService", function() {
 
   describe("getList", function () {
     it("gets list of scores", function() {
+      spyOn(localStorageService, "get");
+      ScoreService.getList();
+
+      expect(localStorageService.get).toHaveBeenCalled();
     });
   });
 
