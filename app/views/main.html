@@ -17,6 +17,17 @@
   </form>
 
   <ul class="scores">
-    <li class="score"ng-repeat="score in scores"><span>{{score.name}}</span><span>{{score.value}}</span></li>
+    <li class="score"
+        ng-repeat="score in scores"
+        ng-init="showControls=false"
+        ng-mouseenter="showControls=true"
+        ng-mouseleave="showControls=false">
+      <span class="data">{{score.name}}</span>
+      <span class="data">{{score.value}}</span>
+      <span ng-show="showControls">
+          <a ng-click="updateScore('{{score.uuid}}')"><span class="glyphicon glyphicon-edit"></span></a>
+          <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
+      </span>
+    </li>
   </ul>
 </div>

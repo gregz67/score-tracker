@@ -14,16 +14,18 @@ describe("Controller: MainCtrl", function () {
     scope = $rootScope.$new();
     ScoreService = _ScoreService_;
 
-    spyOn(ScoreService, "getList").and.returnValues({
-      "00000000-0000-0000-0000-000000000001": {
+    spyOn(ScoreService, "getList").and.returnValues([
+      {
         name: "Megan",
-        value: 99
+        value: 99,
+        uuid: "00000000-0000-0000-0000-000000000001"
       },
-      "00000000-0000-0000-0000-000000000002": {
+      {
         name: "Josh",
-        value: 98
+        value: 99,
+        uuid: "00000000-0000-0000-0000-000000000002"
       }
-    });
+    ]);
 
     MainCtrl = $controller("MainCtrl", {
       $scope: scope,
@@ -36,10 +38,26 @@ describe("Controller: MainCtrl", function () {
   });
 
   it("creates new score", function() {
-    var userProvidedScore = { name: "Greg", value: 100 };
+    var userProvidedScore = {
+        name: "Greg",
+        value: 100,
+        uuid: "00000000-0000-0000-0000-000000000000"
+      };
     spyOn(ScoreService, "create").and.returnValue(userProvidedScore);
 
     scope.addScore(userProvidedScore);
     expect(ScoreService.create).toHaveBeenCalledWith(userProvidedScore);
+  });
+
+  it("removes score", function() {
+    var userProvidedScore = {
+      name: "Greg",
+      value: 100,
+      uuid: "00000000-0000-0000-0000-000000000000"
+    };
+    spyOn(ScoreService, "remove");
+
+    scope.removeScore(userProvidedScore.uuid);
+    expect(ScoreService.remove).toHaveBeenCalledWith(userProvidedScore.uuid);
   });
 });

@@ -30,4 +30,14 @@ angular.module('scoreTrackerApp')
       }
     };
 
+    $scope.removeScore = function(uuid) {
+      ScoreService.remove(uuid);
+
+      $scope.scores = ScoreService.getList();
+    };
+
+    $scope.updateScore = function(uuid) {
+      console.log("update " + uuid);
+    };
+
   });

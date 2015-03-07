@@ -84,9 +84,17 @@ body {
     margin-top: 14px;
     border-bottom: 1px solid #E6E6E6;
 
-    span {
+    .data {
       display: inline-block;
       width: 40%;
+    }
+
+    .glyphicon {
+      cursor: pointer;
+    }
+
+    .glyphicon-remove {
+      color: #FF6666;
     }
   }
 }

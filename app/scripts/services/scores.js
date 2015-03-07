@@ -7,7 +7,7 @@ angular.module("scoreTrackerApp")
 
     function getList() {
       if (_.isEmpty(scores)) {
-        scores = _.filter(localStorageService.get(scoresKey));
+        scores = localStorageService.get(scoresKey) || [];
       }
       return _.sortBy(scores, "name");
     }
@@ -26,12 +26,20 @@ angular.module("scoreTrackerApp")
       }
     }
 
+    function remove(uuid) {
+      _.remove(scores, function(score) {
+        return score.uuid === uuid;
+      });
+      persist();
+    }
+
     function persist() {
-      localStorageService.set(scoresKey, _.indexBy(scores, 'uuid'));
+      localStorageService.set(scoresKey, scores);
     }
 
     return {
       getList: getList,
-      create: create
+      create: create,
+      remove: remove
     };
   });
