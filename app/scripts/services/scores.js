@@ -33,13 +33,18 @@ angular.module("scoreTrackerApp")
       persist();
     }
 
+    function update(updatedScore) {
+      persist();
+    }
+
     function persist() {
       localStorageService.set(scoresKey, scores);
     }
 
     return {
-      getList: getList,
       create: create,
+      getList: getList,
+      update: update,
       remove: remove
     };
   });

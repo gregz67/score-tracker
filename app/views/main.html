@@ -1,34 +1,54 @@
 <div class="main" ng-controller="MainCtrl">
   <h2>Summary goes here</h2>
-  <form name="scoreForm" id="scoreForm" ng-submit="addScore(newScore)">
+  <form name="scoreform" id="scoreform" ng-submit="addScore(newscore)">
     <input type="text"
            class="form-input"
-           ng-model="newScore.name"
+           ng-model="newscore.name"
            tabindex="1"
-           placeholder="Name"
+           placeholder="name"
            ng-required="true"/>
     <input type="number"
            class="form-input"
-           ng-model="newScore.value"
+           ng-model="newscore.value"
            tabindex="2"
-           placeholder="Score"
+           placeholder="score"
            ng-required="true"/>
-    <button type="submit" tabindex="3" class="btn btn-primary">Add Score</button>
+    <button type="submit" tabindex="3" class="btn btn-primary">Add score</button>
   </form>
 
   <ul class="scores">
     <li class="score"
         ng-repeat="score in scores"
-        ng-init="showControls=false"
-        ng-mouseenter="showControls=true"
-        ng-mouseleave="showControls=false">
-      <span class="data" ng-class="{fail: score.value < 65}">
-          <span class="item">{{score.name}}</span>
-          <span class="item">{{score.value}}</span>
+        ng-mouseenter="showControls=true;"
+        ng-mouseleave="showControls=false;"
+        ng-click="editing=true;">
+      <span ng-hide="editing">
+          <span class="data" ng-class="{fail: score.value < 65}">
+              <span class="item">{{score.name}}</span>
+              <span class="item">{{score.value}}</span>
+          </span>
+          <span ng-show="showControls">
+              <a ng-click="editing=true;"><span class="glyphicon glyphicon-edit"></span></a>
+              <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
+          </span>
       </span>
-      <span ng-show="showControls">
-          <a ng-click="updateScore('{{score.uuid}}')"><span class="glyphicon glyphicon-edit"></span></a>
-          <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
+      <span ng-show="editing">
+          <form name="updateForm" ng-submit="updateScore(score);editing=false;">
+            <input type="text"
+                   class="form-input"
+                   ng-model="score.name"
+                   tabindex="1"
+                   ng-required="true"/>
+            <input type="number"
+                   class="form-input"
+                   ng-model="score.value"
+                   tabindex="2"
+                   ng-required="true"/>
+            <input type="hidden"
+                   ng-model="score.uuid">
+            <button type="submit" tabindex="3" class="btn btn-primary">Ok</button>
+            <button type="button" tabindex="4" class="btn btn-secondary" ng-click="editing=false;">Cancel</button>
+          </form>
       </span>
     </li>
   </ul>

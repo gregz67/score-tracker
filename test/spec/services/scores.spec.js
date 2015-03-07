@@ -59,4 +59,16 @@ describe("ScoreService", function() {
     expect(localStorageService.set).toHaveBeenCalled();
   });
 
+  it("updates a score", function() {
+    var userUpdatedScore = {
+      name: "Greg",
+      value: 99,
+      uuid: "00000000-0000-0000-0000-000000000000"
+    };
+    spyOn(localStorageService, "set");
+    ScoreService.update(userUpdatedScore);
+
+    expect(localStorageService.set).toHaveBeenCalled();
+  });
+
 });
