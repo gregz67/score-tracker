@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'LocalStorageModule'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,4 +31,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function(localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('scoreTrackerApp');
   });
