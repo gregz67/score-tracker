@@ -33,7 +33,7 @@ describe("ScoreService", function() {
       spyOn(localStorageService, "set");
       var result = ScoreService.create(userProvidedScore);
 
-      expect(localStorageService.set).toHaveBeenCalled();
+      expect(localStorageService.set).toHaveBeenCalledWith("scores", [userProvidedScore]);
       expect(result).toEqual(userProvidedScore);
     });
 
@@ -49,21 +49,21 @@ describe("ScoreService", function() {
     spyOn(localStorageService, "get");
     ScoreService.getList();
 
-    expect(localStorageService.get).toHaveBeenCalled();
+    expect(localStorageService.get).toHaveBeenCalledWith("scores");
   });
 
   it("removes a score based on key", function() {
     spyOn(localStorageService, "set");
     ScoreService.remove("00000000-0000-0000-0000-000000000000");
 
-    expect(localStorageService.set).toHaveBeenCalled();
+    expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
   });
 
   it("updates a score", function() {
     spyOn(localStorageService, "set");
     ScoreService.update();
 
-    expect(localStorageService.set).toHaveBeenCalled();
+    expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
   });
 
 });
