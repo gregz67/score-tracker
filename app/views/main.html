@@ -41,17 +41,17 @@
           </span>
       </span>
       <span ng-show="editing">
-          <form name="updateForm" ng-submit="updateScore();editing=false;">
+          <form name="updateForm" ng-submit="updateScore(score);editing=false;">
             <input type="text"
                    class="form-input"
                    ng-model="score.name"
                    ng-required="true"
-                   ng-blur="updateScore();editing=false;"/>
+                   ng-blur="updateScore(score);editing=false;"/>
             <input type="number"
                    class="form-input"
                    ng-model="score.value"
                    ng-required="true"
-                   ng-blur="updateScore();editing=false;"/>
+                   ng-blur="updateScore(score);editing=false;"/>
             <input type="hidden"
                    ng-model="score.uuid">
             <button type="submit" class="btn btn-primary">Ok</button>

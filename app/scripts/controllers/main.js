@@ -41,8 +41,9 @@ angular.module('scoreTrackerApp')
       $scope.summary = ScoreService.getSummary();
     };
 
-    $scope.updateScore = function() {
-      ScoreService.update();
-      $scope.summary = ScoreService.getSummary();
+    $scope.updateScore = function(score) {
+      if (ScoreService.update(score)) {
+        $scope.summary = ScoreService.getSummary();
+      }
     };
   });

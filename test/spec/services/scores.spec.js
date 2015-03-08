@@ -59,11 +59,27 @@ describe("ScoreService", function() {
     expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
   });
 
-  it("updates a score", function() {
-    spyOn(localStorageService, "set");
-    ScoreService.update();
+  describe("update", function() {
 
-    expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
+    it("updates a score", function() {
+      var userUpdatedScore = {
+        name: "Greg",
+        value: 99,
+        uuid: "00000000-0000-0000-0000-000000000000"
+      };
+      spyOn(localStorageService, "set");
+      var result = ScoreService.update(userUpdatedScore);
+
+      expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
+      expect(result).toEqual(userUpdatedScore);
+    });
+
+    it("returns undefined when user input is not valid", function() {
+      var userUpdatedScore = {name: false, value: false};
+      var result = ScoreService.update(userUpdatedScore);
+
+      expect(result).toBeUndefined();
+    });
   });
 
 });

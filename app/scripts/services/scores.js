@@ -13,16 +13,13 @@ angular.module("scoreTrackerApp")
     }
 
     function create(score) {
-      if (score.name && typeof score.name === "string" &&
-        score.value && typeof score.value === "number") {
+      if (valid(score)) {
 
         score.uuid = Uuid.generate();
         scores.push(score);
         persist();
 
         return score;
-      } else {
-        return undefined;
       }
     }
 
@@ -33,12 +30,20 @@ angular.module("scoreTrackerApp")
       persist();
     }
 
-    function update() {
-      persist();
+    function update(score) {
+      if (valid(score)) {
+        persist();
+        return score;
+      }
     }
 
     function persist() {
       localStorageService.set(scoresKey, scores);
+    }
+
+    function valid(score) {
+      return (score.name && typeof score.name === "string" &&
+        score.value && typeof score.value === "number");
     }
 
     function getSummary() {
