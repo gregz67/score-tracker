@@ -33,7 +33,7 @@ angular.module("scoreTrackerApp")
       persist();
     }
 
-    function update(updatedScore) {
+    function update() {
       persist();
     }
 

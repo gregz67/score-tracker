@@ -63,15 +63,10 @@ describe("Controller: MainCtrl", function () {
   });
 
   it("updates score", function() {
-    var userUpdatedScore = {
-      name: "Greg",
-      value: 99,
-      uuid: "00000000-0000-0000-0000-000000000000"
-    };
     spyOn(ScoreService, "update");
 
-    scope.updateScore(userUpdatedScore);
+    scope.updateScore();
 
-    expect(ScoreService.update).toHaveBeenCalledWith(userUpdatedScore);
+    expect(ScoreService.update).toHaveBeenCalledWith();
   });
 });

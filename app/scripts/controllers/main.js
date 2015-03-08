@@ -10,7 +10,6 @@
 angular.module('scoreTrackerApp')
   .controller('MainCtrl', function ($scope, ScoreService) {
     $scope.showControls = false;
-    $scope.editing = false;
 
     // populate list
     $scope.scores = ScoreService.getList();
@@ -38,10 +37,9 @@ angular.module('scoreTrackerApp')
       $scope.scores = ScoreService.getList();
     };
 
-    $scope.updateScore = function(score) {
-      ScoreService.update(score);
+    $scope.updateScore = function() {
+      ScoreService.update();
 
       $scope.scores = ScoreService.getList();
     };
-
   });
