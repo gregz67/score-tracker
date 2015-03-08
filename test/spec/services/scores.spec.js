@@ -4,7 +4,7 @@ describe("ScoreService", function() {
   var ScoreService, localStorageService;
 
   beforeEach(module("scoreTrackerApp"));
-  beforeEach(inject(function (_ScoreService_, _localStorageService_) {
+  beforeEach(inject(function(_ScoreService_, _localStorageService_) {
     ScoreService = _ScoreService_;
     localStorageService = _localStorageService_;
   }));
@@ -38,7 +38,7 @@ describe("ScoreService", function() {
     });
 
     it("returns undefined when user input is not valid", function() {
-      var userProvidedScore = { name: false, value: false };
+      var userProvidedScore = {name: false, value: false};
       var result = ScoreService.create(userProvidedScore);
 
       expect(result).toBeUndefined();
