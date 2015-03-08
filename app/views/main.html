@@ -1,15 +1,17 @@
 <div class="main" ng-controller="MainCtrl">
+
   <h2>Summary goes here</h2>
-  <form name="scoreForm" id="scoreForm" ng-submit="addScore(newscore)">
+
+  <form name="scoreForm" id="scoreForm" ng-submit="addScore(newScore)">
     <input type="text"
            class="form-input"
-           ng-model="newscore.name"
+           ng-model="newScore.name"
            tabindex="1"
            placeholder="name"
            ng-required="true"/>
     <input type="number"
            class="form-input"
-           ng-model="newscore.value"
+           ng-model="newScore.value"
            tabindex="2"
            placeholder="score"
            ng-required="true"/>
