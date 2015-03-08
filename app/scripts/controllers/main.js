@@ -13,6 +13,8 @@ angular.module('scoreTrackerApp')
 
     // populate list
     $scope.scores = ScoreService.getList();
+    // calculate summary
+    $scope.summary = ScoreService.getSummary();
 
     function focusForm() {
       $("#scoreForm").find("input").first().focus();
@@ -28,6 +30,7 @@ angular.module('scoreTrackerApp')
         focusForm();
 
         $scope.scores = ScoreService.getList();
+        $scope.summary = ScoreService.getSummary();
       }
     };
 
@@ -35,9 +38,11 @@ angular.module('scoreTrackerApp')
       ScoreService.remove(uuid);
 
       $scope.scores = ScoreService.getList();
+      $scope.summary = ScoreService.getSummary();
     };
 
     $scope.updateScore = function() {
       ScoreService.update();
+      $scope.summary = ScoreService.getSummary();
     };
   });

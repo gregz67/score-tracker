@@ -41,10 +41,27 @@ angular.module("scoreTrackerApp")
       localStorageService.set(scoresKey, scores);
     }
 
+    function getSummary() {
+      return {
+        average: Math.round(_.reduce(scores, function(sum, score) {
+          return sum + score.value;
+        }, 0) / scores.length) || 0,
+
+        minimum: _.min(scores, function(score) {
+          return score.value;
+        }).value || 0,
+
+        maximum: _.max(scores, function(score) {
+          return score.value;
+        }).value || 0
+      };
+    }
+
     return {
       create: create,
       getList: getList,
       update: update,
-      remove: remove
+      remove: remove,
+      getSummary: getSummary
     };
   });

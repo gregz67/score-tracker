@@ -1,7 +1,13 @@
 <div class="main" ng-controller="MainCtrl">
 
-  <h2>Summary goes here</h2>
+  <h3>Summary</h3>
+  <div class="summary">
+    <span class="field">Average: {{summary.average}}</span>
+    <span class="field">Minimum: {{summary.minimum}}</span>
+    <span class="field">Maximum: {{summary.maximum}}</span>
+  </div>
 
+  <h3>Scores</h3>
   <form name="scoreForm" id="scoreForm" ng-submit="addScore(newScore)">
     <input type="text"
            class="form-input"

@@ -61,14 +61,27 @@ body {
 /* Supporting marketing content */
 .main {
   margin: 40px 0;
+  color: #777;
 
-  p + h4 {
-    margin-top: 28px;
+  h3 {
+    color: #000;
+    border-bottom: 1px solid #E6E6E6;
   }
 
   .form-input {
     margin: 14px 0;
     width: 40%;
+  }
+
+  .summary {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    .field {
+      display: inline-block;
+      width: 30%;
+    }
   }
 
   .scores {
@@ -80,7 +93,6 @@ body {
   .score {
 
     font-weight: bold;
-    color: #777;
     margin-top: 14px;
     border-bottom: 1px solid #E6E6E6;
 
