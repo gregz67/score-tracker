@@ -39,7 +39,5 @@ angular.module('scoreTrackerApp')
 
     $scope.updateScore = function() {
       ScoreService.update();
-
-      $scope.scores = ScoreService.getList();
     };
   });
