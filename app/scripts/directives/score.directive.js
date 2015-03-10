@@ -4,7 +4,7 @@ angular.module('scoreTrackerApp')
   .directive('score', function(ScoreService) {
     return {
       restrict: 'E',
-      templateUrl: 'scripts/directives/score.html',
+      templateUrl: '../../views/score.directive.html',
       scope: {
         score: '=',
         updateSummary: '&'
