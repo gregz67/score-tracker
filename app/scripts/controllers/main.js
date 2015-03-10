@@ -15,14 +15,15 @@ angular.module('scoreTrackerApp')
     }
     focusForm();
 
-    // updates from score service
-    $scope.update = function() {
-      // populate list
+    function updateList() {
       $scope.scores = ScoreService.getList();
-      // calculate summary
+    }
+    updateList();
+
+    $scope.updateSummary = function() {
       $scope.summary = ScoreService.getSummary();
     }
-    $scope.update();
+    $scope.updateSummary();
 
     $scope.addScore = function(score) {
       if (ScoreService.create(score)) {
@@ -31,7 +32,8 @@ angular.module('scoreTrackerApp')
         }
         $scope.newScore = { name: "", value: undefined };
 
-        $scope.update();
+        updateList();
+        $scope.updateSummary();
 
         focusForm();
       }
