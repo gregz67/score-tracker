@@ -56,7 +56,7 @@ describe("ScoreService", function() {
     spyOn(localStorageService, "set");
     ScoreService.remove("00000000-0000-0000-0000-000000000000");
 
-    expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
+    expect(localStorageService.set).toHaveBeenCalled();
   });
 
   describe("update", function() {
@@ -70,7 +70,7 @@ describe("ScoreService", function() {
       spyOn(localStorageService, "set");
       var result = ScoreService.update(userUpdatedScore);
 
-      expect(localStorageService.set).toHaveBeenCalledWith("scores", []);
+      expect(localStorageService.set).toHaveBeenCalled();
       expect(result).toEqual(userUpdatedScore);
     });
 

@@ -30,10 +30,14 @@ angular.module("scoreTrackerApp")
       persist();
     }
 
-    function update(score) {
-      if (valid(score)) {
+    function update(newScore) {
+      if (valid(newScore)) {
+        var scoreIndex = _.findIndex(scores, function(score) {
+          return score.uuid === newScore.uuid;
+        });
+        scores[scoreIndex] = newScore;
         persist();
-        return score;
+        return newScore;
       }
     }
 
@@ -42,8 +46,7 @@ angular.module("scoreTrackerApp")
     }
 
     function valid(score) {
-      return (score.name && typeof score.name === "string" &&
-        score.value && typeof score.value === "number");
+      return (score.name && score.value && typeof score.value === "number");
     }
 
     function getSummary() {

@@ -25,39 +25,8 @@
   </form>
 
   <ul class="scores">
-    <li class="score"
-        ng-repeat="score in scores"
-        ng-mouseenter="showControls=true"
-        ng-mouseleave="showControls=false"
-        ng-init="editing=false">
-      <span ng-hide="editing">
-          <span class="data" ng-class="{fail: score.value < 65}" ng-click="editing=true">
-              <span class="item">{{score.name}}</span>
-              <span class="item">{{score.value}}</span>
-          </span>
-          <span ng-show="showControls">
-              <a ng-click="editing=true"><span class="glyphicon glyphicon-edit"></span></a>
-              <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
-          </span>
-      </span>
-      <span ng-show="editing">
-          <form name="updateForm" ng-submit="updateScore(score);editing=false;">
-            <input type="text"
-                   class="form-input"
-                   ng-model="score.name"
-                   ng-required="true"
-                   ng-blur="updateScore(score);editing=false;"/>
-            <input type="number"
-                   class="form-input"
-                   ng-model="score.value"
-                   ng-required="true"
-                   ng-blur="updateScore(score);editing=false;"/>
-            <input type="hidden"
-                   ng-model="score.uuid">
-            <button type="submit" class="btn btn-primary">Ok</button>
-            <button type="button" class="btn btn-secondary" ng-click="editing=false">Cancel</button>
-          </form>
-      </span>
+    <li class="score" ng-repeat="score in scores">
+      <score score="score" update="update()"></score>
     </li>
   </ul>
 </div>

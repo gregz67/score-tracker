@@ -9,17 +9,20 @@
  */
 angular.module('scoreTrackerApp')
   .controller('MainCtrl', function ($scope, ScoreService) {
-    $scope.showControls = false;
-
-    // populate list
-    $scope.scores = ScoreService.getList();
-    // calculate summary
-    $scope.summary = ScoreService.getSummary();
 
     function focusForm() {
       $("#scoreForm").find("input").first().focus();
     }
     focusForm();
+
+    // updates from score service
+    $scope.update = function() {
+      // populate list
+      $scope.scores = ScoreService.getList();
+      // calculate summary
+      $scope.summary = ScoreService.getSummary();
+    }
+    $scope.update();
 
     $scope.addScore = function(score) {
       if (ScoreService.create(score)) {
@@ -27,23 +30,11 @@ angular.module('scoreTrackerApp')
           $scope.scoreForm.$setPristine();
         }
         $scope.newScore = { name: "", value: undefined };
+
+        $scope.update();
+
         focusForm();
-
-        $scope.scores = ScoreService.getList();
-        $scope.summary = ScoreService.getSummary();
       }
     };
 
-    $scope.removeScore = function(uuid) {
-      ScoreService.remove(uuid);
-
-      $scope.scores = ScoreService.getList();
-      $scope.summary = ScoreService.getSummary();
-    };
-
-    $scope.updateScore = function(score) {
-      if (ScoreService.update(score)) {
-        $scope.summary = ScoreService.getSummary();
-      }
-    };
   });

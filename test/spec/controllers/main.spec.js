@@ -49,29 +49,4 @@ describe("Controller: MainCtrl", function () {
     expect(ScoreService.create).toHaveBeenCalledWith(userProvidedScore);
   });
 
-  it("removes score", function() {
-    var userProvidedScore = {
-      name: "Greg",
-      value: 100,
-      uuid: "00000000-0000-0000-0000-000000000000"
-    };
-    spyOn(ScoreService, "remove");
-
-    scope.removeScore(userProvidedScore.uuid);
-
-    expect(ScoreService.remove).toHaveBeenCalledWith(userProvidedScore.uuid);
-  });
-
-  it("updates score", function() {
-    var userUpdatedScore = {
-      name: "Greg",
-      value: 99,
-      uuid: "00000000-0000-0000-0000-000000000000"
-    };
-    spyOn(ScoreService, "update");
-
-    scope.updateScore(userUpdatedScore);
-
-    expect(ScoreService.update).toHaveBeenCalledWith(userUpdatedScore);
-  });
 });
