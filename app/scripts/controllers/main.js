@@ -22,7 +22,7 @@ angular.module('scoreTrackerApp')
 
     $scope.updateSummary = function() {
       $scope.summary = ScoreService.getSummary();
-    }
+    };
     $scope.updateSummary();
 
     $scope.addScore = function(score) {
