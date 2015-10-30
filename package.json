@@ -23,7 +23,7 @@
     "grunt-karma": "^0.10.1",
     "grunt-newer": "^0.8.0",
     "grunt-ng-annotate": "^1.0.0",
-    "grunt-sass": "^0.18.0",
+    "grunt-sass": "~1.1.0",
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^2.6.2",
     "grunt-wiredep": "^2.0.0",
