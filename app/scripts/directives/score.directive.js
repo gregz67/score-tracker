@@ -7,7 +7,7 @@ angular.module('scoreTrackerApp')
       templateUrl: '../../views/score.directive.html',
       scope: {
         score: '=',
-        updateSummary: '&'
+        onChange: '&'
       },
       link: function(scope, element) {
         scope.showControls = false;
@@ -28,12 +28,12 @@ angular.module('scoreTrackerApp')
         scope.removeScore = function(uuid) {
           ScoreService.remove(uuid);
           element.remove();
-          scope.updateSummary();
+          scope.onChange();
         };
 
         scope.updateScore = function(score) {
           if (ScoreService.update(score) && scope.score.value !== score.value) {
-            scope.updateSummary();
+            scope.onChange();
           }
           scope.score = score;
           scope.editing = false;

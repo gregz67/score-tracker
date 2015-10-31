@@ -25,6 +25,6 @@
   </form>
 
   <div class="scores">
-    <score ng-repeat="score in scores" score="score" update-summary="updateSummary()"></score>
+    <score ng-repeat="score in scores" score="score" on-change="updateList()"></score>
   </div>
 </div>
