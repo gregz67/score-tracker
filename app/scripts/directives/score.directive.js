@@ -14,12 +14,12 @@ angular.module('scoreTrackerApp')
         scope.editing = false;
         scope.newScore = angular.copy(scope.score);
 
-        element.parent().bind('mouseenter', function() {
+        element.bind('mouseenter', function() {
           scope.$apply(function() {
             scope.showControls = true;
           });
         });
-        element.parent().bind('mouseleave', function() {
+        element.bind('mouseleave', function() {
           scope.$apply(function() {
             scope.showControls = false;
           });
@@ -27,7 +27,7 @@ angular.module('scoreTrackerApp')
 
         scope.removeScore = function(uuid) {
           ScoreService.remove(uuid);
-          element.parent().remove();
+          element.remove();
           scope.updateSummary();
         };
 

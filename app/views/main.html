@@ -24,9 +24,7 @@
     <button type="submit" tabindex="3" class="btn btn-primary">Add score</button>
   </form>
 
-  <ul class="scores">
-    <li class="score" ng-repeat="score in scores">
-      <score score="score" update-summary="updateSummary()"></score>
-    </li>
-  </ul>
+  <div class="scores">
+    <score ng-repeat="score in scores" score="score" update-summary="updateSummary()"></score>
+  </div>
 </div>
