@@ -49,27 +49,10 @@ angular.module("scoreTrackerApp")
       return (score.name && score.value && typeof score.value === "number");
     }
 
-    function getSummary() {
-      return {
-        average: Math.round(_.reduce(scores, function(sum, score) {
-          return sum + score.value;
-        }, 0) / scores.length) || 0,
-
-        minimum: _.min(scores, function(score) {
-          return score.value;
-        }).value || 0,
-
-        maximum: _.max(scores, function(score) {
-          return score.value;
-        }).value || 0
-      };
-    }
-
     return {
       create: create,
       getList: getList,
       update: update,
-      remove: remove,
-      getSummary: getSummary
+      remove: remove
     };
   });
