@@ -28,12 +28,17 @@ angular.module('scoreTrackerApp')
         scope.removeScore = function(uuid) {
           ScoreService.remove(uuid);
           element.remove();
-          scope.onChange();
+          if (angular.isFunction(scope.onChange)) {
+            scope.onChange();
+          }
         };
 
         scope.updateScore = function(score) {
+          // TODO: optimize this if
           if (ScoreService.update(score) && scope.score.value !== score.value) {
-            scope.onChange();
+            if (angular.isFunction(scope.onChange)) {
+              scope.onChange();
+            }
           }
           scope.score = score;
           scope.editing = false;
