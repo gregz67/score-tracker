@@ -1,4 +1,4 @@
-<span ng-hide="editing">
+<div ng-hide="editing">
   <span class="data" ng-class="{fail: score.value < 65}" ng-click="editMode()">
       <span class="item">{{score.name}}</span>
       <span class="item">{{score.value}}</span>
@@ -7,8 +7,8 @@
       <a ng-click="editMode()"><span class="glyphicon glyphicon-edit"></span></a>
       <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
   </span>
-</span>
-<span ng-show="editing">
+</div>
+<div ng-show="editing">
   <form name="updateForm" ng-submit="updateScore(newScore)">
     <input type="text"
            class="form-input"
@@ -23,4 +23,4 @@
     <button type="submit" class="btn btn-primary">Ok</button>
     <button type="button" class="btn btn-secondary" ng-click="cancel()">Cancel</button>
   </form>
-</span>
+</div>

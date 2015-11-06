@@ -7,19 +7,19 @@ angular.module('scoreTrackerApp')
       templateUrl: '../../views/score.directive.html',
       scope: {
         score: '=',
-        updateSummary: '&'
+        onChange: '&'
       },
       link: function(scope, element) {
         scope.showControls = false;
         scope.editing = false;
         scope.newScore = angular.copy(scope.score);
 
-        element.parent().bind('mouseenter', function() {
+        element.bind('mouseenter', function() {
           scope.$apply(function() {
             scope.showControls = true;
           });
         });
-        element.parent().bind('mouseleave', function() {
+        element.bind('mouseleave', function() {
           scope.$apply(function() {
             scope.showControls = false;
           });
@@ -27,13 +27,18 @@ angular.module('scoreTrackerApp')
 
         scope.removeScore = function(uuid) {
           ScoreService.remove(uuid);
-          element.parent().remove();
-          scope.updateSummary();
+          element.remove();
+          if (angular.isFunction(scope.onChange)) {
+            scope.onChange();
+          }
         };
 
         scope.updateScore = function(score) {
+          // TODO: optimize this if
           if (ScoreService.update(score) && scope.score.value !== score.value) {
-            scope.updateSummary();
+            if (angular.isFunction(scope.onChange)) {
+              scope.onChange();
+            }
           }
           scope.score = score;
           scope.editing = false;

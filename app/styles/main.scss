@@ -87,31 +87,31 @@ body {
     margin: 0;
     padding: 0;
     list-style-type: none;
-  }
 
-  .score {
+    score > div {
 
-    font-weight: bold;
-    margin-top: 14px;
-    border-bottom: 1px solid #E6E6E6;
+      font-weight: bold;
+      margin-top: 14px;
+      border-bottom: 1px solid #E6E6E6;
 
-    .data {
-      .item {
-        display: inline-block;
-        width: 40%;
+      .data {
+        .item {
+          display: inline-block;
+          width: 40%;
+        }
+
+        &.fail {
+          color: #FF6666;
+        }
       }
 
-      &.fail {
+      .glyphicon {
+        cursor: pointer;
+      }
+
+      .glyphicon-remove {
         color: #FF6666;
       }
-    }
-
-    .glyphicon {
-      cursor: pointer;
-    }
-
-    .glyphicon-remove {
-      color: #FF6666;
     }
   }
 }
