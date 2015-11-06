@@ -46,7 +46,7 @@ angular.module("scoreTrackerApp")
     }
 
     function valid(score) {
-      return (score.name && score.value && typeof score.value === "number");
+      return (angular.isString(score.name) && angular.isNumber(score.value));
     }
 
     return {

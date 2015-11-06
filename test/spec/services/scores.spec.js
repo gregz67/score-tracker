@@ -43,6 +43,17 @@ describe("ScoreService", function() {
 
       expect(result).toBeUndefined();
     });
+
+    it("supports a zero value in the score", function() {
+      var userProvidedScore = {
+        name: "Bob",
+        value: 0
+      };
+
+      var result = ScoreService.create(userProvidedScore);
+
+      expect(result).toBeDefined();
+    });
   });
 
   it("gets list of scores", function() {
