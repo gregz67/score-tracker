@@ -15,10 +15,11 @@ angular.module('scoreTrackerApp')
     }
     focusForm();
 
-    $scope.updateList = function() {
+    $scope.update = function() {
       $scope.scores = ScoreService.getList();
+      $scope.statistics = ScoreService.getStatistics();
     };
-    $scope.updateList();
+    $scope.update();
 
     $scope.addScore = function(score) {
       if (ScoreService.create(score)) {
@@ -26,25 +27,9 @@ angular.module('scoreTrackerApp')
           $scope.scoreForm.$setPristine();
         }
         $scope.newScore = { name: "", value: undefined };
-        $scope.updateList();
+        $scope.update();
         focusForm();
       }
     };
-
-    $scope.$watch('scores', function() {
-      $scope.summary = {
-        average: Math.round(_.reduce($scope.scores, function(sum, score) {
-            return sum + score.value;
-          }, 0) / $scope.scores.length) || 0,
-
-        minimum: _.min($scope.scores, function(score) {
-          return score.value;
-        }).value || 0,
-
-        maximum: _.max($scope.scores, function(score) {
-          return score.value;
-        }).value || 0
-      };
-    }, true);
 
   });

@@ -2,8 +2,7 @@
 
 angular.module("scoreTrackerApp")
   .factory("ScoreService", function(localStorageService, Uuid) {
-    var scoresKey = "scores";
-    var scores = [];
+    var scoresKey = "scores", scores = [];
 
     function getList() {
       if (_.isEmpty(scores)) {
@@ -45,6 +44,22 @@ angular.module("scoreTrackerApp")
       localStorageService.set(scoresKey, scores);
     }
 
+    function getStatistics() {
+      return {
+        average: Math.round(_.reduce(scores, function(sum, score) {
+            return sum + score.value;
+          }, 0) / scores.length) || 0,
+
+        minimum: _.min(scores, function(score) {
+          return score.value;
+        }).value || 0,
+
+        maximum: _.max(scores, function(score) {
+          return score.value;
+        }).value || 0
+      };
+    }
+
     function valid(score) {
       return (angular.isString(score.name) && angular.isNumber(score.value));
     }
@@ -53,6 +68,7 @@ angular.module("scoreTrackerApp")
       create: create,
       getList: getList,
       update: update,
-      remove: remove
+      remove: remove,
+      getStatistics: getStatistics
     };
   });

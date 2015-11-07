@@ -2,9 +2,9 @@
 
   <h3>Summary</h3>
   <div class="summary">
-    <span class="field">Average: {{summary.average}}</span>
-    <span class="field">Minimum: {{summary.minimum}}</span>
-    <span class="field">Maximum: {{summary.maximum}}</span>
+    <span class="field">Average: {{statistics.average}}</span>
+    <span class="field">Minimum: {{statistics.minimum}}</span>
+    <span class="field">Maximum: {{statistics.maximum}}</span>
   </div>
 
   <h3>Scores</h3>
@@ -25,6 +25,6 @@
   </form>
 
   <div class="scores">
-    <score ng-repeat="score in scores" score="score" on-change="updateList()"></score>
+    <score ng-repeat="score in scores" score="score" on-change="update()"></score>
   </div>
 </div>
