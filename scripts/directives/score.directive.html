@@ -1,0 +1,26 @@
+<div ng-hide="editing">
+  <span class="data" ng-class="{fail: score.value < 65}" ng-click="editMode()">
+      <span class="item">{{score.name}}</span>
+      <span class="item">{{score.value}}</span>
+  </span>
+  <span ng-show="showControls">
+      <a ng-click="editMode()"><span class="glyphicon glyphicon-edit"></span></a>
+      <a ng-click="removeScore('{{score.uuid}}')"><span class="glyphicon glyphicon-remove"></span></a>
+  </span>
+</div>
+<div ng-show="editing">
+  <form name="updateForm" ng-submit="updateScore(newScore)">
+    <input type="text"
+           class="form-input"
+           ng-model="newScore.name"
+           ng-required="true"/>
+    <input type="number"
+           class="form-input"
+           ng-model="newScore.value"
+           ng-required="true"/>
+    <input type="hidden"
+           ng-model="newScore.uuid">
+    <button type="submit" class="btn btn-primary">Ok</button>
+    <button type="button" class="btn btn-secondary" ng-click="cancel()">Cancel</button>
+  </form>
+</div>
