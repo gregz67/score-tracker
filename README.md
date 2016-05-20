@@ -7,7 +7,7 @@ version 0.11.0.
 
 ## Hosting
 
-http://score-tracker.cfapps.io/
+https://gregz67.github.io/score-tracker/
 
 ## Build & development
 
